@@ -34,6 +34,7 @@ app.set("view engine", "ejs");
 app.use(session({ secret: "cats", resave: false, saveUninitialized: true }));
 //3 functions
 //we aren’t going to be calling these functions on our own, they’re used in the background by passport.
+//this has to be before the passport initialization
 
 passport.use(
   new LocalStrategy(async (username, password, done) => {
