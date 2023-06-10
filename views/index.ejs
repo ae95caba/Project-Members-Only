@@ -12,6 +12,19 @@
     <a href="/create-message"><button>create a message</button></a>
     <h1>WELCOME BACK <%= user?.username %></h1>
     <a href="/log-out">LOG OUT</a>
+    <div class="messages">
+      <% if (messages && messages.length > 0) { %>
+      <ul>
+        <% messages.forEach(function(message) { %>
+        <li>
+          <%= message?.title %> <%= message?.content%> <%= user.member ?
+          `${message.user.first_name} ${message.user.last_name}` : "" %> <%=
+          user.member ? message.timestamp.toLocaleDateString() : "" %>
+        </li>
+        <% }); %>
+      </ul>
+      <% } %>
+    </div>
     <% } else { %>
     <h1>please log in</h1>
     <form action="/log-in" method="POST">
