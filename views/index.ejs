@@ -5,8 +5,11 @@
     <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
   <body>
-    <% if (user) {%>
+    <% if (user) {%> <% if (!user.member) {%>
     <a href="/join"><button>join the club</button></a>
+    <% } %>
+
+    <a href="/create-message"><button>create a message</button></a>
     <h1>WELCOME BACK <%= user?.username %></h1>
     <a href="/log-out">LOG OUT</a>
     <% } else { %>

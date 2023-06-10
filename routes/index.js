@@ -3,9 +3,10 @@ var router = express.Router();
 
 // Require controller modules.
 const user_controller = require("../controllers/userController");
-const message_controller = require("../controllers/messageController");
+
 const signup_controller = require("../controllers/signupController");
 const join_controller = require("../controllers/joinController");
+const create_message_controller = require("../controllers/createMessageController");
 
 /* The passport middleware checks to see if there is a 
 user logged in (by checking the cookies that come in
@@ -33,5 +34,9 @@ router.get("/log-out", (req, res, next) => {
 router.get("/join", join_controller.join_get);
 
 router.post("/join", join_controller.join_post);
+
+router.get("/create-message", create_message_controller.create_message_get);
+
+router.post("/create-message", create_message_controller.create_message_post);
 
 module.exports = router;
