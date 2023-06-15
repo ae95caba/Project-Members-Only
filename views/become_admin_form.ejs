@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <body>
+      <form method="post">
+        <legend>Become admin</legend>
+        <input name="code" placeholder="Secret code" /><button>OK</button>
+      </form>
+      <% if (errors && errors.length > 0) { %>
+      <ul>
+        <% errors.forEach(function(error) { %>
+        <li><%= error?.msg %></li>
+        <% }); %>
+      </ul>
+      <% } %>
+    </body>
+  </body>
+</html>

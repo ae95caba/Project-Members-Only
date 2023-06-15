@@ -9,6 +9,7 @@ const user_controller = require("../controllers/userController");
 const signup_controller = require("../controllers/signupController");
 const join_controller = require("../controllers/joinController");
 const create_message_controller = require("../controllers/createMessageController");
+const become_admin_controller = require("../controllers/becomeAdminController.js");
 
 /* The passport middleware checks to see if there is a 
 user logged in (by checking the cookies that come in
@@ -43,6 +44,10 @@ router.get("/log-out", (req, res, next) => {
 router.get("/join", join_controller.join_get);
 
 router.post("/join", join_controller.join_post);
+
+router.get("/become-admin", become_admin_controller.become_admin_get);
+
+router.post("/become-admin", become_admin_controller.become_admin_post);
 
 router.get("/create-message", create_message_controller.create_message_get);
 

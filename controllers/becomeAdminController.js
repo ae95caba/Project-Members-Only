@@ -4,7 +4,7 @@ const asyncHandler = require("express-async-handler");
 const { body, query, validationResult } = require("express-validator");
 
 // Display bookinstance update form on GET.
-exports.join_get = asyncHandler(async (req, res, next) => {
+exports.become_admin_get = asyncHandler(async (req, res, next) => {
   // Get bookinstance and authors for form.
 
   const user = req.user;
@@ -16,15 +16,15 @@ exports.join_get = asyncHandler(async (req, res, next) => {
     return next(err);
   }
 
-  res.render("join_form", {
+  res.render("become_admin_form", {
     errors: undefined,
   });
 });
 
 // Handle BookInstance update on POST.
-exports.join_post = [
+exports.become_admin_post = [
   // Validate body and sanitize fields.
-  body("code").equals("123").withMessage("Invalid code"),
+  body("code").equals("asdf1234").withMessage("Invalid code"),
 
   // Process request after validation and sanitization.
   asyncHandler(async (req, res, next) => {
@@ -45,7 +45,7 @@ exports.join_post = [
       // Data from form is valid. Update the record.
       const theuser = await User.findByIdAndUpdate(
         req.user._id,
-        { member: true },
+        { admin: true },
         {}
       );
       // Redirect to book detail page.

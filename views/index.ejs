@@ -7,6 +7,8 @@
   <body>
     <% if (user) {%> <% if (!user.member) {%>
     <a href="/join"><button>join the club</button></a>
+    <% } %> <% if (!user.admin) {%>
+    <a href="/become-admin"><button>become admin</button></a>
     <% } %>
 
     <a href="/create-message"><button>create a message</button></a>
@@ -17,12 +19,21 @@
       <ul>
         <% messages.forEach(function(message) { %>
         <li>
-          <%= message?.title %> <%= message?.content%> <%= user.member ?
-          `${message.user.first_name} ${message.user.last_name}` : "" %> <%=
-          user.member ? message.timestamp.toLocaleDateString() : "" %>
+          <div><%= message?.title %></div>
+          <div><%= message?.content%></div>
+          <div>
+            <%= user.member ? `${message.user.first_name}
+            ${message.user.last_name}` : "" %>
+          </div>
+          <div>
+            <%= user.member ? message.timestamp.toLocaleDateString() : "" %>
+          </div>
+          <% if (user.admin) { %>
+          <button>Delete</button>
+          <% } %> <% }); %>
         </li>
-        <% }); %>
       </ul>
+
       <% } %>
     </div>
     <% } else { %>
@@ -34,6 +45,7 @@
       <input name="password" type="password" />
       <button>Log In</button>
     </form>
+    <a href="/sign-up">Dont have an account ?</a>
     <%}%>
   </body>
 </html>
