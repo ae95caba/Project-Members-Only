@@ -1,51 +1,53 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>my app</title>
-    <link rel="stylesheet" href="/stylesheets/style.css" />
-  </head>
-  <body>
-    <% if (user) {%> <% if (!user.member) {%>
-    <a href="/join"><button>join the club</button></a>
-    <% } %> <% if (!user.admin) {%>
-    <a href="/become-admin"><button>become admin</button></a>
-    <% } %>
 
-    <a href="/create-message"><button>create a message</button></a>
-    <h1>WELCOME BACK <%= user?.username %></h1>
-    <a href="/log-out">LOG OUT</a>
-    <div class="messages">
-      <% if (messages && messages.length > 0) { %>
-      <ul>
-        <% messages.forEach(function(message) { %>
-        <li>
-          <div><%= message?.title %></div>
-          <div><%= message?.content%></div>
-          <div>
-            <%= user.member ? `${message.user.first_name}
+<head>
+  <title>my app</title>
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+</head>
+
+<body>
+  <% if (user) {%> <% if (!user.member) {%>
+  <a href="/join"><button>join the club</button></a>
+  <% } %> <% if (!user.admin) {%>
+  <a href="/become-admin"><button>become admin</button></a>
+  <% } %>
+
+  <a href="/create-message"><button>create a message</button></a>
+  <h1>WELCOME BACK <%= user?.username %></h1>
+  <a href="/log-out">LOG OUT</a>
+  <div class="messages">
+    <% if (messages && messages.length > 0) { %>
+    <ul>
+      <% messages.forEach(function(message) { %>
+      <li>
+        <div><%= message?.title %></div>
+        <div><%= message?.content%></div>
+        <div>
+          <%= user.member ? `${message.user.first_name}
             ${message.user.last_name}` : "" %>
-          </div>
-          <div>
-            <%= user.member ? message.timestamp.toLocaleDateString() : "" %>
-          </div>
-          <% if (user.admin) { %>
-          <button>Delete</button>
-          <% } %> <% }); %>
-        </li>
-      </ul>
+        </div>
+        <div>
+          <%= user.member ? message.timestamp.toLocaleDateString() : "" %>
+        </div>
+        <% if (user.admin) { %>
+        <form action="/delete-message?id=<%= message._id%>" method="post"><button>Delete</button></form>
+        <% } %> <% }); %>
+      </li>
+    </ul>
 
-      <% } %>
-    </div>
-    <% } else { %>
-    <h1>please log in</h1>
-    <form action="/log-in" method="POST">
-      <label for="username">Username</label>
-      <input name="username" placeholder="username" type="text" />
-      <label for="password">Password</label>
-      <input name="password" type="password" />
-      <button>Log In</button>
-    </form>
-    <a href="/sign-up">Dont have an account ?</a>
-    <%}%>
+    <% } %>
+  </div>
+  <% } else { %>
+  <h1>please log in</h1>
+  <form action="/log-in" method="POST">
+    <label for="username">Username</label>
+    <input name="username" placeholder="username" type="text" />
+    <label for="password">Password</label>
+    <input name="password" type="password" />
+    <button>Log In</button>
+  </form>
+  <a href="/sign-up">Dont have an account ?</a>
+  <%}%>
   </body>
 </html>

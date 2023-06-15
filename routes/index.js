@@ -9,6 +9,7 @@ const user_controller = require("../controllers/userController");
 const signup_controller = require("../controllers/signupController");
 const join_controller = require("../controllers/joinController");
 const create_message_controller = require("../controllers/createMessageController");
+const delete_message_controller = require("../controllers/deleteMessageController");
 const become_admin_controller = require("../controllers/becomeAdminController.js");
 
 /* The passport middleware checks to see if there is a 
@@ -52,5 +53,7 @@ router.post("/become-admin", become_admin_controller.become_admin_post);
 router.get("/create-message", create_message_controller.create_message_get);
 
 router.post("/create-message", create_message_controller.create_message_post);
+
+router.post("/delete-message", delete_message_controller.delete_message_post);
 
 module.exports = router;
