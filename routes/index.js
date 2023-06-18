@@ -29,6 +29,8 @@ router.get(
   })
 );
 
+//the log-in route is missing here, IT IS IN THE APP.JS
+
 router.get("/sign-up", signup_controller.signup_create_get);
 
 router.post("/sign-up", signup_controller.signup_create_post);
@@ -42,9 +44,13 @@ router.get("/log-out", (req, res, next) => {
   });
 });
 
+//makes a USER a member (changes its member status)
+
 router.get("/join", join_controller.join_get);
 
 router.post("/join", join_controller.join_post);
+
+/////////////
 
 router.get("/become-admin", become_admin_controller.become_admin_get);
 
